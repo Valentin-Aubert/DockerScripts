@@ -27,7 +27,6 @@ if [ -e /home/docker/archives/ghostlastest.tar ]
         then echo "ghostlastest.tar trouvé"
         else echo "ghostlastest.tar n'éxiste pas" && touch /home/docker/archives/ghostlastest.tar && echo "ghostlastest.tar crée"
 fi 
-rm /home/docker/archives/ghost5.tar
 mv /home/docker/archives/ghost4.tar /home/docker/archives/ghost5.tar
 mv /home/docker/archives/ghost3.tar /home/docker/archives/ghost4.tar
 mv /home/docker/archives/ghost2.tar /home/docker/archives/ghost3.tar
