@@ -9,7 +9,7 @@ mv /home/docker/archives/docker
 
 if [ -e /home/docker/archives/ghost5.tar ]
         then echo "ghost5.tar trouvé, supression" && sleep 3 && rm /home/docker/archives/ghost5.tar && echo "Ghost5 supprimé"
-        else echo "ghost5.tar n'éxiste pas" && echo "Pas de suppression" && touch /home/docker/archives/ghost5.tar && echo "Ghost5 crée"
+        else echo "ghost5.tar n'éxiste pas"
 fi 
 if [ -e /home/docker/archives/ghost4.tar ]
         then echo "ghost4.tar trouvé" 
@@ -27,8 +27,8 @@ if [ -e /home/docker/archives/ghostlastest.tar ]
         then echo "ghostlastest.tar trouvé"
         else echo "ghostlastest.tar n'éxiste pas" && touch /home/docker/archives/ghostlastest.tar && echo "ghostlastest.tar crée"
 fi 
-mv /home/docker/archives/ghost4.tar /home/docker/archives/ghost5.tar
-mv /home/docker/archives/ghost3.tar /home/docker/archives/ghost4.tar
-mv /home/docker/archives/ghost2.tar /home/docker/archives/ghost3.tar
-ms /home/docker/archives/ghostlastest /home/docker/archives/ghost2.tar
-tar cvf /home/docker/archives/ghostlastest.tar /home/docker/ghost
+mv /home/docker/archives/ghost4.tar /home/docker/archives/ghost5.tar && echo "mv 4 -> 5"
+mv /home/docker/archives/ghost3.tar /home/docker/archives/ghost4.tar && echo "mv 3 -> 4"
+mv /home/docker/archives/ghost2.tar /home/docker/archives/ghost3.tar && echo "mv 2 -> 3"
+mv /home/docker/archives/ghostlastest /home/docker/archives/ghost2.tar && echo "mv last -> 2"
+tar cvf /home/docker/archives/ghostlastest.tar /home/docker/ghost && echo "arcihve ok"
