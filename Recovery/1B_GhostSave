@@ -30,5 +30,5 @@ fi
 mv /home/docker/archives/ghost4.tar /home/docker/archives/ghost5.tar && echo "mv 4 -> 5"
 mv /home/docker/archives/ghost3.tar /home/docker/archives/ghost4.tar && echo "mv 3 -> 4"
 mv /home/docker/archives/ghost2.tar /home/docker/archives/ghost3.tar && echo "mv 2 -> 3"
-mv /home/docker/archives/ghostlastest /home/docker/archives/ghost2.tar && echo "mv last -> 2"
+mv /home/docker/archives/ghostlastest.tar /home/docker/archives/ghost2.tar && echo "mv last -> 2"
 tar cvf /home/docker/archives/ghostlastest.tar /home/docker/ghost && echo "arcihve ok"
