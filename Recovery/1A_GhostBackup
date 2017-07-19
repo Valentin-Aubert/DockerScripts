@@ -1,0 +1,11 @@
+#!/bin/bash
+
+clear
+echo "Restauration de Ghost"
+sleep 3
+echo "Suppression de données"
+sleep 6
+rm -rf /home/docker/ghost/*
+cp /home/docker/archives/ghostlastest.tar /home/docker/ghost/
+tar xvf ghostlastest.tar && rm ghostlastest.tar
+clear && echo "Ghost restauré"
