@@ -7,5 +7,6 @@ echo "Suppression de données"
 sleep 6
 rm -rf /home/docker/ghost/*
 cp /home/docker/archives/ghostlastest.tar /home/docker/ghost/
-tar xvf ghostlastest.tar && rm ghostlastest.tar
+tar xvf /home/docker/ghost/ghostlastest.tar && rm /home/docker/ghost/ghostlastest.tar
+mv /home/docker/ghost/home/docker/ghost/* /home/docker/ghost/
 clear && echo "Ghost restauré"
