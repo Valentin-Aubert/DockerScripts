@@ -1,0 +1,36 @@
+#!/bin/bash
+
+clear
+echo init
+ipmysql=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql)
+idbdd=CCCCCCCC
+mdp=BBBBBBBB
+db=AAAAAAAA
+echo ok
+if [ -e /home/docker/archives/dumppiwik5.sql ]
+        then echo "dumppiwik5.sql trouvé" && sleep 3 && rm /home/docker/archives/dumppiwik5.sql && echo "Piwik5 supprimé"
+        else echo "dumppiwik5.sql n'éxiste pas" && touch /home/docker/archives/dumppiwik5.sql && echo "Piwik5 créé"
+fi
+if [ -e /home/docker/archives/dumppiwik4.sql ]
+        then echo "dumppiwik4.sql trouvé"
+        else echo "dumppiwik4.sql n'éxiste pas" && touch /home/docker/archives/dumppiwik4.sql && echo "Piwik4 créé"
+fi
+if [ -e /home/docker/archives/dumppiwik3.sql ]
+        then echo "dumppiwik3.sql trouvé"
+        else echo "dumppiwik3.sql n'éxiste pas" && touch /home/docker/archives/dumppiwik3.sql && echo "Piwik3 créé"
+fi
+if [ -e /home/docker/archives/dumppiwik2.sql ]
+        then echo "dumppiwik2.sql trouvé"
+        else echo "dumppiwik2.sql n'éxiste pas" && touch /home/docker/archives/dumppiwik2.sql && echo "Piwik2 créé"
+fi
+if [ -e /home/docker/archives/dumppiwiklastest.sql ]
+        then echo "dumppiwiklastest.sql trouvé"
+        else echo "dumppiwiklastest.sql n'éxiste pas" && touch /home/docker/archives/dumppiwik && echo "Piwiklastest créé"
+fi
+mv /home/docker/archives/dumppiwik4.sql /home/docker/archives/dumppiwik5.sql && echo "mv 4 -> 5"
+mv /home/docker/archives/dumppiwik3.sql /home/docker/archives/dumppiwik4.sql && echo "mv 3 -> 4"
+mv /home/docker/archives/dumppiwik2.sql /home/docker/archives/dumppiwik3.sql && echo "mv 2 -> 3"
+mv /home/docker/archives/dumppiwiklastest.sql /home/docker/archives/dumppiwik2.sql && echo "mv last -> 2"
+echo dump
+mysqldump -h $ipmysql -u $idbdd -p$mdp --databases $db > /home/docker/archives/dumppiwiklastest.sql
+echo "dump Ok"
