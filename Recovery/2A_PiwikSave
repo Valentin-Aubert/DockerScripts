@@ -3,9 +3,9 @@
 clear
 echo init
 ipmysql=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql)
-idbdd=CCCCCCCC
-mdp=BBBBBBBB
-db=AAAAAAAA
+idbdd=dbadmin
+mdp=adminpw
+db=piwik
 echo ok
 if [ -e /home/docker/archives/dumppiwik5.sql ]
         then echo "dumppiwik5.sql trouvé" && sleep 3 && rm /home/docker/archives/dumppiwik5.sql && echo "Piwik5 supprimé"
@@ -34,3 +34,33 @@ mv /home/docker/archives/dumppiwiklastest.sql /home/docker/archives/dumppiwik2.s
 echo dump
 mysqldump -h $ipmysql -u $idbdd -p$mdp --databases $db > /home/docker/archives/dumppiwiklastest.sql
 echo "dump Ok"
+
+echo "Sauvegarde de Piwik"
+sleep 3
+echo "Archivage"
+sleep 6
+if [ -e /home/docker/archives/piwik5.tar ]
+        then echo "piwik5.tar trouvé, supression" && sleep 3 && rm /home/docker/archives/piwik5.tar && echo "Pwik5 supprimé"
+        else echo "piwik5.tar n'éxiste pas"
+fi 
+if [ -e /home/docker/archives/piwik4.tar ]
+        then echo "piwik4.tar trouvé" 
+        else echo "piwik4.tar n'éxiste pas" && touch /home/docker/archives/piwik4.tar && echo "Piwik4.tar crée"
+fi 
+if [ -e /home/docker/archives/piwik3.tar ]
+        then echo "piwik3.tar trouvé" 
+        else echo "piwik3.tar n'éxiste pas" && touch /home/docker/archives/piwik3.tar && echo "Piwik3.tar crée"
+fi 
+if [ -e /home/docker/archives/piwik2.tar ]
+        then echo "piwik2.tar trouvé" 
+        else echo "piwik2.tar n'éxiste pas" && touch /home/docker/archives/piwik2.tar && echo "Piwik2 crée"
+fi 
+if [ -e /home/docker/archives/piwiklastest.tar ]
+        then echo "piwiklastest.tar trouvé"
+        else echo "piwiklastest.tar n'éxiste pas" && touch /home/docker/archives/piwiklastest.tar && echo "piwiklastest.tar crée"
+fi 
+mv /home/docker/archives/piwik4.tar /home/docker/archives/piwik5.tar && echo "mv 4 -> 5"
+mv /home/docker/archives/piwik3.tar /home/docker/archives/piwik4.tar && echo "mv 3 -> 4"
+mv /home/docker/archives/piwik2.tar /home/docker/archives/piwik3.tar && echo "mv 2 -> 3"
+mv /home/docker/archives/piwiklastest.tar /home/docker/archives/piwik2.tar && echo "mv last -> 2"
+tar cvf /home/docker/archives/piwiklastest.tar /home/docker/piwik >/dev/null && echo "arcihve ok"
