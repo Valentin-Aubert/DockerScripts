@@ -5,8 +5,6 @@ echo "Sauvegarde de Ghost"
 sleep 3
 echo "Archivage"
 sleep 6
-mv /home/docker/archives/docker
-
 if [ -e /home/docker/archives/ghost5.tar ]
         then echo "ghost5.tar trouvé, supression" && sleep 3 && rm /home/docker/archives/ghost5.tar && echo "Ghost5 supprimé"
         else echo "ghost5.tar n'éxiste pas"
