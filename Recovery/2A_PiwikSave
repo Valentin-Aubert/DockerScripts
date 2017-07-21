@@ -3,9 +3,9 @@
 clear
 echo init
 ipmysql=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql)
-idbdd=dbadmin
-mdp=adminpw
-db=piwik
+idbdd=XXXXXX
+mdp=XXXXXX
+db=XXXXXXX
 echo ok
 if [ -e /home/docker/archives/dumppiwik5.sql ]
         then echo "dumppiwik5.sql trouvé" && sleep 3 && rm /home/docker/archives/dumppiwik5.sql && echo "Piwik5 supprimé"
